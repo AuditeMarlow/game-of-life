@@ -7,6 +7,7 @@ const interval = 50;
 
 const canvas = document.getElementById('game');
 const context = canvas.getContext('2d');
+const fillStyle = '#000';
 
 let Game = {
   start: function () {
@@ -35,10 +36,13 @@ function Grid() {
   }
 
   this.draw = function () {
+    context.clearRect(0, 0, width, height);
+
     for (let i = 0; i < cols; i++) {
       for (let j = 0; j < rows; j++) {
-        context.fillStyle = this.cells[i][j] ? '#000' : '#fff';
+        if (this.cells[i][j] == 0) continue;
 
+        context.fillStyle = fillStyle;
         context.fillRect(i * resolution, j * resolution, resolution, resolution);
       }
     }
